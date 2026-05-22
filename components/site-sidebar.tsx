@@ -1,5 +1,15 @@
-import { ChevronRight, Paperclip, Search, Star } from "lucide-react";
+"use client";
+
+import {
+  ChevronRight,
+  PanelLeftClose,
+  PanelLeftOpen,
+  Paperclip,
+  Search,
+  Star,
+} from "lucide-react";
 import Link from "next/link";
+import { useState } from "react";
 
 import { Button } from "@/components/ui/button";
 import { parts, totalEntries } from "@/lib/sections";
@@ -20,21 +30,50 @@ const tabs = [
 ] as const;
 
 export function SiteSidebar() {
+  const [collapsed, setCollapsed] = useState(false);
+
+  if (collapsed) {
+    return (
+      <aside className="ruled hidden h-full w-12 shrink-0 flex-col items-center overflow-hidden border-ink border-r bg-paper-2 py-4 transition-all duration-300 ease-out lg:flex">
+        <Button
+          variant="outline"
+          size="icon-sm"
+          onClick={() => setCollapsed(false)}
+          aria-label="Expand sidebar"
+        >
+          <PanelLeftOpen />
+        </Button>
+      </aside>
+    );
+  }
+
   return (
-    <aside className="ruled hidden h-full w-67.5 shrink-0 flex-col gap-4 overflow-hidden border-ink border-r bg-paper-2 px-4 py-4 lg:flex">
+    <aside className="ruled hidden h-full w-67.5 shrink-0 flex-col gap-4 overflow-hidden border-ink border-r bg-paper-2 px-4 py-4 transition-all duration-300 ease-out lg:flex">
       <div className="relative shrink-0">
         <span className="washi washi-blue absolute -top-2 left-1 h-4 w-16 -rotate-6" />
-        <div className="flex items-baseline gap-2">
-          <span className="font-bold font-title text-3xl text-ink leading-none">
-            Atlas
-          </span>
-          <span className="font-mono text-[10px] text-ink-soft uppercase tracking-wide">
-            public docs
-          </span>
+        <div className="flex items-start justify-between gap-2">
+          <div>
+            <div className="flex items-baseline gap-2">
+              <span className="font-bold font-title text-3xl text-ink leading-none">
+                Atlas
+              </span>
+              <span className="font-mono text-[10px] text-ink-soft uppercase tracking-wide">
+                public docs
+              </span>
+            </div>
+            <p className="mt-1.5 font-mono text-[10px] text-ink-soft uppercase tracking-[0.18em]">
+              Field Manual · v0
+            </p>
+          </div>
+          <Button
+            variant="outline"
+            size="icon-sm"
+            onClick={() => setCollapsed(true)}
+            aria-label="Collapse sidebar"
+          >
+            <PanelLeftClose />
+          </Button>
         </div>
-        <p className="mt-1.5 font-mono text-[10px] text-ink-soft uppercase tracking-[0.18em]">
-          Field Manual · v0
-        </p>
       </div>
 
       <div className="flex shrink-0 items-center gap-2 border border-ink/40 border-dashed bg-paper/70 px-2.5 py-2">
