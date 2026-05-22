@@ -368,7 +368,7 @@ export const parts: Entry[] = [
   },
 ];
 
-const appendices: Entry[] = [
+export const appendices: Entry[] = [
   {
     id: "A",
     title: "DSA & CS Reference",
@@ -447,12 +447,22 @@ export function getEntry(id: string): Entry | undefined {
   return tableOfContents.find((entry) => entry.id === id);
 }
 
+/** Whether `entry` is an appendix (lettered id) rather than a part. */
+export function isAppendix(entry: Entry): boolean {
+  return !/^\d+$/.test(entry.id);
+}
+
 /**
  * Header label for an entry: "Part 1" for numbered parts, "Appendix A" for
  * lettered appendices.
  */
 export function entryLabel(entry: Entry): string {
-  return /^\d+$/.test(entry.id)
-    ? `Part ${Number(entry.id)}`
-    : `Appendix ${entry.id}`;
+  return isAppendix(entry)
+    ? `Appendix ${entry.id}`
+    : `Part ${Number(entry.id)}`;
+}
+
+/** Route to an entry's page: parts live under /parts, appendices under /appendices. */
+export function entryHref(entry: Entry): string {
+  return isAppendix(entry) ? `/appendices/${entry.id}` : `/parts/${entry.id}`;
 }

@@ -2,12 +2,12 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 import { EntryPage } from "@/components/entry-page";
-import { entryLabel, getEntry, isAppendix, parts } from "@/lib/sections";
+import { appendices, entryLabel, getEntry, isAppendix } from "@/lib/sections";
 
 type PageProps = { params: Promise<{ id: string }> };
 
 export function generateStaticParams() {
-  return parts.map((entry) => ({ id: entry.id }));
+  return appendices.map((entry) => ({ id: entry.id }));
 }
 
 export async function generateMetadata({
@@ -15,7 +15,7 @@ export async function generateMetadata({
 }: PageProps): Promise<Metadata> {
   const { id } = await params;
   const entry = getEntry(id);
-  if (!entry || isAppendix(entry)) {
+  if (!entry || !isAppendix(entry)) {
     return { title: "Not found — Atlas" };
   }
   return {
@@ -24,10 +24,10 @@ export async function generateMetadata({
   };
 }
 
-export default async function PartPage({ params }: PageProps) {
+export default async function AppendixPage({ params }: PageProps) {
   const { id } = await params;
   const entry = getEntry(id);
-  if (!entry || isAppendix(entry)) {
+  if (!entry || !isAppendix(entry)) {
     notFound();
   }
 

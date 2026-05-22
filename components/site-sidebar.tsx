@@ -13,8 +13,44 @@ import { usePathname } from "next/navigation";
 import { useState } from "react";
 
 import { Button } from "@/components/ui/button";
-import { parts, totalEntries } from "@/lib/sections";
+import {
+  type Entry,
+  entryHref,
+  tableOfContents,
+  totalEntries,
+} from "@/lib/sections";
 import { cn } from "@/lib/utils";
+
+function NavRow({ entry, active }: { entry: Entry; active: boolean }) {
+  return (
+    <Link
+      href={entryHref(entry)}
+      aria-current={active ? "page" : undefined}
+      className={cn(
+        "group flex items-center gap-2.5 border-l-2 px-2 py-1.5 transition-colors duration-300 ease-out",
+        active
+          ? "border-navy bg-post-blue/60"
+          : "border-transparent hover:bg-paper",
+      )}
+    >
+      <span className="w-4 shrink-0 font-mono text-[10px] text-ink-soft">
+        {entry.id}
+      </span>
+      <span
+        className={cn(
+          "flex-1 truncate text-[13px] text-ink",
+          active && "font-medium",
+        )}
+      >
+        {entry.title}
+      </span>
+      <span className="font-mono text-[10px] text-ink-soft">
+        {entry.chapters}
+      </span>
+      <ChevronRight className="size-3.5 text-ink-soft transition-transform duration-300 ease-out group-hover:translate-x-0.5" />
+    </Link>
+  );
+}
 
 function Kbd({ children }: { children: React.ReactNode }) {
   return (
@@ -105,48 +141,20 @@ export function SiteSidebar() {
         ))}
       </div>
 
-      <div className="flex shrink-0 items-center justify-between px-0.5">
+      <div className="flex shrink-0 items-center px-0.5">
         <span className="font-mono text-[10px] text-ink-soft uppercase tracking-[0.18em]">
-          Parts
-        </span>
-        <span className="font-mono text-[10px] text-ink-soft">
-          {totalEntries} entries total
+          Parts + Appendices
         </span>
       </div>
 
       <nav className="field-scroll -mt-1.5 flex min-h-0 flex-1 flex-col overflow-y-auto">
-        {parts.map((part) => {
-          const active = pathname === `/parts/${part.id}`;
-          return (
-            <Link
-              key={part.id}
-              href={`/parts/${part.id}`}
-              aria-current={active ? "page" : undefined}
-              className={cn(
-                "group flex items-center gap-2.5 border-l-2 px-2 py-1.5 transition-colors duration-300 ease-out",
-                active
-                  ? "border-navy bg-post-blue/60"
-                  : "border-transparent hover:bg-paper",
-              )}
-            >
-              <span className="font-mono text-[10px] text-ink-soft">
-                {part.id}
-              </span>
-              <span
-                className={cn(
-                  "flex-1 truncate text-[13px] text-ink",
-                  active && "font-medium",
-                )}
-              >
-                {part.title}
-              </span>
-              <span className="font-mono text-[10px] text-ink-soft">
-                {part.chapters}
-              </span>
-              <ChevronRight className="size-3.5 text-ink-soft transition-transform duration-300 ease-out group-hover:translate-x-0.5" />
-            </Link>
-          );
-        })}
+        {tableOfContents.map((entry) => (
+          <NavRow
+            key={entry.id}
+            entry={entry}
+            active={pathname === entryHref(entry)}
+          />
+        ))}
       </nav>
 
       <div className="flex shrink-0 items-center gap-2 border border-ink/40 border-dashed px-2.5 py-2">
