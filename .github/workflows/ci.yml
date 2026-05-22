@@ -23,7 +23,7 @@ jobs:
       # Install pnpm as a standalone binary that bundles its own Node, so the
       # runner default Node (older than pnpm 11 needs) cannot fail the install.
       - name: Install pnpm
-        uses: pnpm/action-setup@v4
+        uses: pnpm/action-setup@v6
         with:
           standalone: true
 
