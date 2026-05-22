@@ -11,7 +11,7 @@ export function TopBar() {
       <nav className="flex items-center gap-4">
         <a
           href="https://github.com/DyslecixDev/atlas"
-          className="flex items-center gap-0.5 font-mono text-[11px] text-ink-soft transition-colors hover:text-ink"
+          className="flex items-center gap-0.5 font-mono text-[11px] text-ink-soft transition-colors duration-300 ease-out hover:text-ink"
         >
           github
           <ArrowUpRight className="size-3" />

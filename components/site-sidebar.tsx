@@ -51,7 +51,7 @@ export function SiteSidebar() {
             key={tab.label}
             type="button"
             className={cn(
-              "cursor-pointer border px-2.5 py-1 text-[12px] text-ink outline-none transition-all focus-visible:ring-3 focus-visible:ring-ring/50 not-disabled:active:brightness-90 disabled:not-aria-busy:cursor-not-allowed disabled:opacity-50 aria-busy:cursor-progress",
+              "cursor-pointer border px-2.5 py-1 text-[12px] text-ink outline-none transition-all duration-300 ease-out focus-visible:ring-3 focus-visible:ring-ring/50 not-disabled:active:brightness-90 disabled:not-aria-busy:cursor-not-allowed disabled:opacity-50 aria-busy:cursor-progress",
               tab.tone === "active"
                 ? "border-ink bg-post-blue"
                 : tab.tone === "green"
@@ -89,7 +89,7 @@ export function SiteSidebar() {
             <span className="font-mono text-[10px] text-ink-soft">
               {part.chapters}
             </span>
-            <ChevronRight className="size-3.5 text-ink-soft transition-transform group-hover:translate-x-0.5" />
+            <ChevronRight className="size-3.5 text-ink-soft transition-transform duration-300 ease-out group-hover:translate-x-0.5" />
           </Link>
         ))}
       </nav>

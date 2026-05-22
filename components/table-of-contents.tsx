@@ -15,7 +15,7 @@ function TocRow({ entry, active }: { entry: Entry; active: boolean }) {
   return (
     <li
       className={cn(
-        "relative border border-ink px-3.5 py-3 transition-colors",
+        "relative border border-ink px-3.5 py-3 transition-colors duration-300 ease-out",
         active
           ? "lift-sm rotate-[-0.8deg] bg-post-yellow"
           : "bg-paper-2 hover:bg-paper",

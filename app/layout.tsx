@@ -37,7 +37,10 @@ export default function RootLayout({
       lang="en"
       className={`${patrickHand.variable} ${caveat.variable} ${jetbrainsMono.variable} h-full antialiased`}
     >
-      <body className="flex h-dvh flex-col overflow-hidden p-1.5">
+      <body
+        className="flex h-dvh flex-col overflow-hidden p-1.5"
+        suppressHydrationWarning
+      >
         {children}
       </body>
     </html>
