@@ -27,14 +27,11 @@ export function ProgressAside() {
           you've covered, your streak, and the stickers you earn.
         </p>
         <div className="mt-4 flex items-center gap-2">
-          <Button className="h-9 flex-1 gap-1.5 border border-ink bg-navy-deep px-3 text-[13px] text-paper hover:bg-navy">
+          <Button className="h-9 flex-1 gap-1.5 px-3 text-[13px]">
             create a free account
             <ArrowRight className="size-3.5" />
           </Button>
-          <Button
-            variant="outline"
-            className="h-9 border-ink bg-paper px-3 text-[13px] text-ink hover:bg-paper-2"
-          >
+          <Button variant="outline" className="h-9 px-3 text-[13px]">
             sign in
           </Button>
         </div>

@@ -3,6 +3,7 @@ import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
 import { parts, totalEntries } from "@/lib/sections";
+import { cn } from "@/lib/utils";
 
 function Kbd({ children }: { children: React.ReactNode }) {
   return (
@@ -49,13 +50,14 @@ export function SiteSidebar() {
           <button
             key={tab.label}
             type="button"
-            className={
+            className={cn(
+              "cursor-pointer border px-2.5 py-1 text-[12px] text-ink outline-none transition-all focus-visible:ring-3 focus-visible:ring-ring/50 not-disabled:active:brightness-90 disabled:not-aria-busy:cursor-not-allowed disabled:opacity-50 aria-busy:cursor-progress",
               tab.tone === "active"
-                ? "border border-ink bg-post-blue px-2.5 py-1 text-[12px] text-ink"
+                ? "border-ink bg-post-blue"
                 : tab.tone === "green"
-                  ? "border border-ink/30 bg-post-green/60 px-2.5 py-1 text-[12px] text-ink-soft hover:border-ink/60"
-                  : "border border-ink/30 bg-paper px-2.5 py-1 text-[12px] text-ink-soft hover:border-ink/60"
-            }
+                  ? "border-ink/30 bg-post-green/60 not-disabled:hover:border-ink not-disabled:hover:bg-post-green"
+                  : "border-ink/30 bg-paper not-disabled:hover:border-ink not-disabled:hover:bg-paper-2",
+            )}
           >
             {tab.label}
           </button>
@@ -117,13 +119,8 @@ export function SiteSidebar() {
           signing up saves your progress + streak.
         </p>
         <div className="mt-2.5 flex gap-2">
-          <Button className="h-7 flex-1 bg-navy-deep px-2 text-[12px] text-paper hover:bg-navy">
-            sign up
-          </Button>
-          <Button
-            variant="outline"
-            className="h-7 flex-1 border-ink bg-paper px-2 text-[12px] text-ink hover:bg-paper-2"
-          >
+          <Button className="h-7 flex-1 px-2 text-[12px]">sign up</Button>
+          <Button variant="outline" className="h-7 flex-1 px-2 text-[12px]">
             sign in
           </Button>
         </div>

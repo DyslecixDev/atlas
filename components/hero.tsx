@@ -21,12 +21,12 @@ function SampleEntry() {
       <p className="mt-2 text-[11px] text-ink-soft leading-snug">
         default forms library · headless · zod adapter. Lives in §4.7.
       </p>
-      <button
-        type="button"
-        className="mt-2.5 inline-flex items-center gap-1 font-mono text-[10px] text-navy hover:underline"
+      <Button
+        variant="link"
+        className="mt-2.5 h-auto gap-1 p-0 font-mono text-[10px]"
       >
         open →
-      </button>
+      </Button>
     </div>
   );
 }
@@ -50,11 +50,11 @@ export function Hero() {
         Bookmark any page.
       </p>
       <div className="mt-5 flex flex-wrap items-center gap-3">
-        <Button className="h-9 gap-1.5 border border-ink bg-post-yellow px-4 text-[14px] text-ink hover:bg-gold-hi">
+        <Button variant="accent" className="h-9 gap-1.5 px-4 text-[14px]">
           start at 01
           <ArrowRight className="size-4" />
         </Button>
-        <Button className="h-9 border border-paper/30 bg-navy-deep px-4 text-[14px] text-paper hover:bg-navy-deep/80">
+        <Button variant="inverse" className="h-9 px-4 text-[14px]">
           browse all {totalEntries}
         </Button>
         <span className="font-mono text-[11px] text-paper/55">

@@ -16,15 +16,10 @@ export function TopBar() {
           github
           <ArrowUpRight className="size-3" />
         </a>
-        <button
-          type="button"
-          className="border border-ink/30 px-2 py-1 font-mono text-[11px] text-ink-soft transition-colors hover:border-ink hover:text-ink"
-        >
+        <Button variant="quiet" className="h-7 px-3 font-mono text-[11px]">
           sign in
-        </button>
-        <Button className="h-7 bg-navy-deep px-3 text-[12px] text-paper hover:bg-navy">
-          sign up — free
         </Button>
+        <Button className="h-7 px-3 text-[12px]">sign up — free</Button>
       </nav>
     </header>
   );

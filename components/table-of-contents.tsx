@@ -40,15 +40,12 @@ function TocRow({ entry, active }: { entry: Entry; active: boolean }) {
           {entry.chapters} ch
         </span>
         {active ? (
-          <Button className="h-7 gap-1 bg-navy-deep px-3 text-[12px] text-paper hover:bg-navy">
+          <Button className="h-7 gap-1 px-3 text-[12px]">
             start
             <ArrowRight className="size-3.5" />
           </Button>
         ) : (
-          <Button
-            variant="outline"
-            className="h-7 border-ink bg-paper px-3 text-[12px] text-ink hover:bg-paper-2"
-          >
+          <Button variant="outline" className="h-7 px-3 text-[12px]">
             open
           </Button>
         )}
