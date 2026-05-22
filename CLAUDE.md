@@ -21,7 +21,7 @@ content serves two reading modes: a linear **beginner path** and a deep-linkable
 ## Stack & versions
 
 - Next.js 16 (App Router, React Compiler enabled in `next.config.ts`)
-- React 19 · TypeScript 5 · Tailwind CSS v4
+- React 19 · TypeScript 6 · Tailwind CSS v4
 - Node 22 LTS (`.nvmrc`) · pnpm (see `packageManager` in `package.json`)
 - Biome for lint + format · Lefthook for git hooks
 - knip for unused files/deps/exports · commitlint for commit + PR-title linting
@@ -58,11 +58,12 @@ and `pnpm knip` (the four checks CI runs) before considering work done.
 
 ## Project status
 
-Early scaffolding. Repo tooling (CI, hooks, Dependabot, community-health files) is
-in place. The content platform — content schema, MDX/rendering, the field-manual
-UI, and the Parts 1–3 entries — is **not built yet** and is the next major effort.
-The user already has the Parts 1–3 prose written; the task is to build the
-platform and ingest it (don't rewrite the prose).
+Repo tooling (CI, hooks, Dependabot, community-health files) is in place, and a
+field-manual **landing page** is built (`app/page.tsx` with the hero, sidebar,
+stats, table-of-contents, and progress components). Still unbuilt: the content
+platform — content schema, MDX/rendering, and the Parts 1–3 entries — which is the
+next major effort. The user already has the Parts 1–3 prose written; the task is
+to build the platform and ingest it (don't rewrite the prose).
 
 ## Design direction
 
