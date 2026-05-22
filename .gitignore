@@ -50,6 +50,9 @@ Thumbs.db
 # lychee link checker cache
 .lycheecache
 
+# lighthouse ci reports
+.lighthouseci/
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts

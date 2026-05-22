@@ -25,6 +25,7 @@
     "format": "biome format --write",
     "typecheck": "tsc --noEmit",
     "knip": "knip",
+    "lhci": "lhci autorun",
     "prepare": "lefthook install"
   },
   "dependencies": {
@@ -42,6 +43,7 @@
     "@biomejs/biome": "2.4.15",
     "@commitlint/cli": "^21.0.1",
     "@commitlint/config-conventional": "^21.0.1",
+    "@lhci/cli": "^0.15.1",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^22.19.19",
     "@types/react": "^19",

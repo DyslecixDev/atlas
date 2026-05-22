@@ -1,0 +1,45 @@
+name: Lighthouse
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+# Least privilege by default.
+permissions:
+  contents: read
+
+# A new push to a branch cancels any running job on that same ref.
+concurrency:
+  group: lighthouse-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  lighthouse:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      # Install pnpm as a standalone binary that bundles its own Node, so the
+      # runner default Node (older than pnpm 11 needs) cannot fail the install.
+      - name: Install pnpm
+        uses: pnpm/action-setup@v6
+        with:
+          standalone: true
+
+      - name: Setup Node
+        uses: actions/setup-node@v6
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build
+        run: pnpm build
+
+      # Boots the production server, runs Lighthouse, and asserts the budgets in
+      # lighthouserc.json. ubuntu-latest ships Chrome, which chrome-launcher finds.
+      - name: Lighthouse CI
+        run: pnpm lhci
