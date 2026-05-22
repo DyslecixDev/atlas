@@ -22,7 +22,7 @@ final AI-augmented capstone.
 | Framework      | Next.js 16 (App Router, React Compiler) |
 | UI             | React 19                                |
 | Styling        | Tailwind CSS v4                         |
-| Language       | TypeScript 5                            |
+| Language       | TypeScript 6                            |
 | Runtime        | Node 22 LTS                             |
 | Package manager| pnpm                                    |
 | Lint / format  | Biome                                   |

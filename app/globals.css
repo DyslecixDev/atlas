@@ -1,26 +1,191 @@
 @import "tailwindcss";
+@import "tw-animate-css";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  color-scheme: light;
+  --radius: 0px;
+
+  /* Paper & ink (the substrate) */
+  --paper: oklch(94% 0.025 90);
+  --paper-2: oklch(90% 0.04 92);
+  --backdrop: oklch(81% 0.05 92);
+  --ink: oklch(21% 0 0);
+  /* 46% keeps small ink-soft labels >= WCAG AA (4.5:1) on paper and paper-2 */
+  --ink-soft: oklch(46% 0 0);
+
+  /* Accents */
+  --navy: oklch(28% 0.065 270);
+  --navy-deep: oklch(18% 0.055 270);
+  --gold: oklch(67% 0.13 85);
+  --gold-deep: oklch(50% 0.11 85);
+  --gold-hi: oklch(77% 0.13 85);
+  --pen-red: oklch(48% 0.17 35);
+  --stamp-red: oklch(45% 0.16 32);
+  --pen-blue: oklch(40% 0.16 265);
+
+  /* Post-its */
+  --post-yellow: oklch(91% 0.1 100);
+  --post-pink: oklch(85% 0.062 0);
+  --post-blue: oklch(83% 0.054 245);
+  --post-green: oklch(86% 0.06 130);
+
+  /* Washi tape */
+  --tape-blue: oklch(74% 0.055 245);
+  --tape-pink: oklch(73% 0.08 0);
+  --tape-kraft: oklch(67% 0.07 75);
+
+  /* shadcn semantic tokens mapped onto the palette */
+  --background: var(--paper);
+  --foreground: var(--ink);
+  --card: var(--paper-2);
+  --card-foreground: var(--ink);
+  --popover: var(--paper);
+  --popover-foreground: var(--ink);
+  --primary: var(--navy-deep);
+  --primary-foreground: var(--paper);
+  --secondary: var(--paper-2);
+  --secondary-foreground: var(--ink);
+  --muted: var(--paper-2);
+  --muted-foreground: var(--ink-soft);
+  --accent: var(--post-yellow);
+  --accent-foreground: var(--ink);
+  --destructive: var(--stamp-red);
+  --border: var(--ink);
+  --input: var(--ink);
+  --ring: var(--navy);
 }
 
 @theme inline {
+  --font-hand: var(--font-patrick);
+  --font-title: var(--font-caveat);
+  --font-mono: var(--font-jetbrains);
+  --font-sans: var(--font-patrick);
+
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* Custom field-manual color utilities */
+  --color-paper: var(--paper);
+  --color-paper-2: var(--paper-2);
+  --color-backdrop: var(--backdrop);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-navy: var(--navy);
+  --color-navy-deep: var(--navy-deep);
+  --color-gold: var(--gold);
+  --color-gold-deep: var(--gold-deep);
+  --color-gold-hi: var(--gold-hi);
+  --color-pen-red: var(--pen-red);
+  --color-stamp-red: var(--stamp-red);
+  --color-pen-blue: var(--pen-blue);
+  --color-post-yellow: var(--post-yellow);
+  --color-post-pink: var(--post-pink);
+  --color-post-blue: var(--post-blue);
+  --color-post-green: var(--post-green);
+  --color-tape-blue: var(--tape-blue);
+  --color-tape-pink: var(--tape-pink);
+  --color-tape-kraft: var(--tape-kraft);
+
+  /* Sharp corners everywhere: this is paper, not a SaaS card */
+  --radius-sm: 0px;
+  --radius-md: 0px;
+  --radius-lg: 0px;
+  --radius-xl: 0px;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-backdrop font-hand text-ink;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer components {
+  /* Faint ruled-notebook lines */
+  .ruled {
+    background-image: repeating-linear-gradient(
+      to bottom,
+      transparent 0,
+      transparent 29px,
+      color-mix(in srgb, var(--ink) 7%, transparent) 29px,
+      color-mix(in srgb, var(--ink) 7%, transparent) 30px
+    );
+  }
+
+  /* Diagonal washi-tape strip (apply a color modifier alongside) */
+  .washi {
+    opacity: 0.92;
+    box-shadow: 0 1px 2px color-mix(in srgb, var(--ink) 16%, transparent);
+    background-image: repeating-linear-gradient(
+      45deg,
+      color-mix(in srgb, var(--ink) 7%, transparent) 0,
+      color-mix(in srgb, var(--ink) 7%, transparent) 4px,
+      transparent 4px,
+      transparent 9px
+    );
+  }
+  .washi-blue {
+    background-color: color-mix(in srgb, var(--tape-blue) 82%, transparent);
+  }
+  .washi-kraft {
+    background-color: color-mix(in srgb, var(--tape-kraft) 82%, transparent);
+  }
+  .washi-pink {
+    background-color: color-mix(in srgb, var(--tape-pink) 82%, transparent);
+  }
+
+  /* Lifted paper / sticker shadow */
+  .lift {
+    box-shadow: 4px 5px 0 -1px color-mix(in srgb, var(--ink) 22%, transparent);
+  }
+  .lift-sm {
+    box-shadow: 3px 3px 0 -1px color-mix(in srgb, var(--ink) 18%, transparent);
+  }
+
+  /*
+   * Field manual scrollbars, styled via WebKit pseudo elements so the look
+   * lands in both Chrome and Safari. Setting the standard scrollbar shorthand
+   * properties here would make Chrome ignore these rules, so we leave them off
+   * (Firefox falls back to its default scrollbar).
+   */
+  .field-scroll::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+  }
+  .field-scroll::-webkit-scrollbar-track {
+    background-color: color-mix(in srgb, var(--ink) 4%, transparent);
+  }
+  .field-scroll::-webkit-scrollbar-thumb {
+    border: 3px solid transparent;
+    border-radius: 0;
+    background-clip: content-box;
+    background-color: color-mix(in srgb, var(--ink) 34%, transparent);
+  }
+  .field-scroll::-webkit-scrollbar-thumb:hover {
+    background-color: color-mix(in srgb, var(--ink) 56%, transparent);
+  }
+  .field-scroll::-webkit-scrollbar-thumb:active {
+    background-color: color-mix(in srgb, var(--ink) 72%, transparent);
+  }
+  .field-scroll::-webkit-scrollbar-corner {
+    background-color: transparent;
+  }
 }

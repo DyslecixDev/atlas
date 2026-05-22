@@ -25,17 +25,25 @@
     "format": "biome format --write",
     "typecheck": "tsc --noEmit",
     "knip": "knip",
+    "lhci": "lhci autorun",
     "prepare": "lefthook install"
   },
   "dependencies": {
+    "@base-ui/react": "^1.5.0",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "lucide-react": "^1.16.0",
     "next": "16.2.6",
     "react": "19.2.6",
-    "react-dom": "19.2.6"
+    "react-dom": "19.2.6",
+    "tailwind-merge": "^3.6.0",
+    "tw-animate-css": "^1.4.0"
   },
   "devDependencies": {
     "@biomejs/biome": "2.4.15",
     "@commitlint/cli": "^21.0.1",
     "@commitlint/config-conventional": "^21.0.1",
+    "@lhci/cli": "^0.15.1",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^22.19.19",
     "@types/react": "^19",
