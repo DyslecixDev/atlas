@@ -1,0 +1,33 @@
+name: Links
+
+# Check documentation links on a weekly schedule and on demand.
+# External link checks fail intermittently, so this never runs on pull requests.
+on:
+  schedule:
+    - cron: "0 6 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  link-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check links
+        id: lychee
+        uses: lycheeverse/lychee-action@v2
+        with:
+          args: "--config lychee.toml ."
+          fail: false
+
+      - name: Open an issue when links are broken
+        if: steps.lychee.outputs.exit_code != 0
+        uses: peter-evans/create-issue-from-file@v5
+        with:
+          title: Broken links found by lychee
+          content-filepath: ./lychee/out.md
+          labels: bug, documentation

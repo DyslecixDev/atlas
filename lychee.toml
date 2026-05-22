@@ -1,0 +1,17 @@
+# lychee link checker configuration. See https://lychee.cli.rs/usage/config
+# Cache results between runs so repeated checks do not hammer external sites.
+cache = true
+max_cache_age = "1d"
+
+# Treat these HTTP statuses as healthy. 429 means rate limited, not broken.
+accept = ["200..=299", "429"]
+
+# Retry transient failures before reporting a link as broken.
+max_retries = 2
+
+# Skip mail links and local development URLs.
+exclude_mail = true
+exclude = ['^https?://localhost', '^https?://127\.0\.0\.1']
+
+# Do not scan dependencies or build output.
+exclude_path = [".git", ".next", "build", "node_modules", "out"]

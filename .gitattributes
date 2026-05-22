@@ -1,0 +1,20 @@
+# Normalize line endings so the repository stores LF and every checkout uses LF.
+# This prevents CRLF churn from Windows contributors (and WSL2, which the guide favors).
+* text=auto eol=lf
+
+# Shell scripts must stay LF or they fail to run under bash.
+*.sh text eol=lf
+
+# Lockfiles and generated files stay text but do not appear in diffs by default.
+pnpm-lock.yaml linguist-generated=true -diff
+
+# Binary assets are never normalized or diffed.
+*.gif binary
+*.ico binary
+*.jpeg binary
+*.jpg binary
+*.pdf binary
+*.png binary
+*.webp binary
+*.woff binary
+*.woff2 binary

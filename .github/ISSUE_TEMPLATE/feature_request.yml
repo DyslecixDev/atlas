@@ -1,0 +1,28 @@
+name: Feature request
+description: Propose a new capability or improvement (app or content).
+title: "feat: "
+labels: ["enhancement", "needs triage"]
+body:
+  - type: markdown
+    attributes:
+      value: For larger changes, please open this before building so we can agree on scope.
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem / motivation
+      description: What need or gap does this address?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+      description: What would you like to see happen?
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+    validations:
+      required: false

@@ -1,0 +1,30 @@
+name: Bug report
+description: Something in the app is broken or behaving unexpectedly.
+title: "fix: "
+labels: ["bug", "needs triage"]
+body:
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: What did you expect, and what happened instead?
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Go to '...'
+        2. Click '...'
+        3. See error
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Browser/OS, and Node version if relevant.
+      placeholder: "Chrome 124 on macOS 14; Node 22"
+    validations:
+      required: false

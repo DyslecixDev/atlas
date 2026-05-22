@@ -1,0 +1,30 @@
+name: Content correction
+description: Report an error, outdated info, or unclear explanation in a guide entry.
+title: "docs: "
+labels: ["content", "needs triage"]
+body:
+  - type: markdown
+    attributes:
+      value: Thanks for helping keep Atlas accurate. The guide pins tool versions, so things go stale — corrections are welcome.
+  - type: input
+    id: entry
+    attributes:
+      label: Which entry?
+      description: Part / section, and a URL or path if you have it.
+      placeholder: "Part 2.4 — Styling (Tailwind CSS)"
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: What's wrong?
+      description: Describe the error, the outdated claim, or what was unclear.
+    validations:
+      required: true
+  - type: textarea
+    id: correction
+    attributes:
+      label: Suggested correction
+      description: If you know the fix, propose it here. Sources/links help.
+    validations:
+      required: false
