@@ -20,13 +20,20 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Install pnpm
-        uses: pnpm/action-setup@v4
-
+      # pnpm 11 needs Node 22.13 or newer, so Node must be installed before pnpm.
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version-file: .nvmrc
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+
+      # Run Node setup again now that pnpm exists so its store gets cached.
+      - name: Enable pnpm store cache
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
           cache: pnpm
 
       - name: Install dependencies
