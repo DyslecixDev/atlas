@@ -38,7 +38,13 @@ function NoteMarker({ note }: { note: string }) {
   );
 }
 
-export function ChapterCard({ chapter }: { chapter: Chapter }) {
+export function ChapterCard({
+  chapter,
+  current = false,
+}: {
+  chapter: Chapter;
+  current?: boolean;
+}) {
   const accent = chapter.accent ?? "gold";
 
   return (
@@ -47,14 +53,14 @@ export function ChapterCard({ chapter }: { chapter: Chapter }) {
         "relative border border-ink bg-paper p-4 text-ink transition-shadow duration-300 ease-out",
         // The "current" treatment (tilt, lift, washi, filled button) marks the
         // reader's active chapter and will later follow the logged-in user.
-        chapter.current ? "lift rotate-[-0.8deg]" : "lift-sm",
+        current ? "lift rotate-[-0.8deg]" : "lift-sm",
       )}
     >
       <span
         aria-hidden="true"
         className={`absolute inset-x-0 top-0 h-1 ${accentBar[accent]}`}
       />
-      {chapter.current && (
+      {current && (
         <span className="washi washi-pink absolute -top-2 right-4 h-4 w-16 rotate-3" />
       )}
       {chapter.note && <NoteMarker note={chapter.note} />}
@@ -74,7 +80,7 @@ export function ChapterCard({ chapter }: { chapter: Chapter }) {
       </p>
 
       <div className="mt-3.5 flex items-center justify-between">
-        {chapter.current ? (
+        {current ? (
           <Button className="h-7 gap-1.5 px-3 text-[12px]">
             open
             <ArrowRight className="size-3.5" />

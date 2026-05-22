@@ -7,7 +7,12 @@ import { OptionalBanner } from "@/components/optional-banner";
 import { PartHeader } from "@/components/part-header";
 import { SiteSidebar } from "@/components/site-sidebar";
 import { TopBar } from "@/components/top-bar";
-import { entryLabel, getEntry, tableOfContents } from "@/lib/sections";
+import {
+  entryLabel,
+  getEntry,
+  isCurrentChapter,
+  tableOfContents,
+} from "@/lib/sections";
 
 type PageProps = { params: Promise<{ id: string }> };
 
@@ -65,7 +70,11 @@ export default async function PartPage({ params }: PageProps) {
             {entry.chapterList ? (
               <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                 {entry.chapterList.map((chapter) => (
-                  <ChapterCard key={chapter.number} chapter={chapter} />
+                  <ChapterCard
+                    key={chapter.number}
+                    chapter={chapter}
+                    current={isCurrentChapter(chapter)}
+                  />
                 ))}
               </div>
             ) : (

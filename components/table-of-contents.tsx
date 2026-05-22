@@ -6,6 +6,7 @@ import {
   appendicesCount,
   chapterPreview,
   type Entry,
+  isCurrentEntry,
   partsCount,
   tableOfContents,
 } from "@/lib/sections";
@@ -68,8 +69,8 @@ export function TableOfContents() {
         </span>
       </div>
       <ul className="mt-5 flex flex-col gap-2.5">
-        {tableOfContents.map((entry, index) => (
-          <TocRow key={entry.id} entry={entry} active={index === 0} />
+        {tableOfContents.map((entry) => (
+          <TocRow key={entry.id} entry={entry} active={isCurrentEntry(entry)} />
         ))}
       </ul>
     </section>

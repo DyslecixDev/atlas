@@ -11,8 +11,6 @@ export type Chapter = {
   rating: number;
   /** Top-edge accent color. Defaults to gold when omitted. */
   accent?: ChapterAccent;
-  /** The chapter the reader is on now: gets the filled "open" button. */
-  current?: boolean;
   /** Optional margin note rendered as a post-it beside the card. */
   note?: string;
 };
@@ -54,7 +52,6 @@ export const parts: Entry[] = [
           "the guide's conventions · the Pick pattern · ~5 min, no entries.",
         rating: 5,
         accent: "blue",
-        current: true,
       },
       {
         number: "1.2",
@@ -418,6 +415,31 @@ export const totalEntries = 320;
 /** Chapter names joined for the preview line (CSS truncates the overflow). */
 export function chapterPreview(entry: Entry): string {
   return entry.topics.join(" · ");
+}
+
+/**
+ * The reader's current chapter, as a chapter number ("1.1"). This is reader
+ * state, not content: it is hardcoded to the first chapter for now, and a
+ * future login feature will source it from the signed-in user's saved
+ * progress. Kept module-private so the rest of the app reads progress only
+ * through the predicates below: the highlighted table-of-contents row on "/"
+ * and the askew chapter card on a part page both derive from this one value,
+ * so moving the reader updates both.
+ */
+const currentChapterId = "1.1";
+
+/** Whether `chapter` is the reader's current chapter. */
+export function isCurrentChapter(chapter: Chapter): boolean {
+  return chapter.number === currentChapterId;
+}
+
+/** Whether `entry` is the part or appendix that holds the current chapter. */
+export function isCurrentEntry(entry: Entry): boolean {
+  const [prefix] = currentChapterId.split(".");
+  // Parts use zero-padded numeric ids ("01") while chapter prefixes are not
+  // padded ("1"), so match numerically; fall back to a string match so lettered
+  // appendix ids ("A") still work.
+  return Number(entry.id) === Number(prefix) || entry.id === prefix;
 }
 
 /** Look up any entry (part or appendix) by its id. */
