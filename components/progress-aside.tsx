@@ -16,7 +16,7 @@ export function ProgressAside() {
   return (
     <aside className="flex flex-col gap-5 self-start lg:sticky lg:top-18">
       <div className="lift border border-ink bg-post-yellow p-5 text-ink">
-        <p className="font-mono text-[10px] text-ink/60 uppercase tracking-[0.18em]">
+        <p className="font-mono text-[10px] text-ink/70 uppercase tracking-[0.18em]">
           Optional · Free
         </p>
         <h3 className="mt-1 font-bold font-title text-3xl leading-none">
@@ -35,7 +35,7 @@ export function ProgressAside() {
             sign in
           </Button>
         </div>
-        <p className="mt-2.5 font-mono text-[10px] text-ink/60">
+        <p className="mt-2.5 font-mono text-[10px] text-ink/70">
           no email required · oauth or magic link
         </p>
       </div>
@@ -59,12 +59,7 @@ export function ProgressAside() {
                 <Check className="size-3" />
               </span>
               <span className="flex-1 text-[13px] text-ink">{perk.label}</span>
-              <span
-                className={cn(
-                  "font-mono text-[10px]",
-                  perk.tier === "free" ? "text-ink-soft" : "text-ink-soft/60",
-                )}
-              >
+              <span className="font-mono text-[10px] text-ink-soft">
                 {perk.tier}
               </span>
             </li>

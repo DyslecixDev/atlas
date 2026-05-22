@@ -10,7 +10,8 @@
   --paper-2: oklch(90% 0.04 92);
   --backdrop: oklch(81% 0.05 92);
   --ink: oklch(21% 0 0);
-  --ink-soft: oklch(50% 0 0);
+  /* 46% keeps small ink-soft labels >= WCAG AA (4.5:1) on paper and paper-2 */
+  --ink-soft: oklch(46% 0 0);
 
   /* Accents */
   --navy: oklch(28% 0.065 270);
