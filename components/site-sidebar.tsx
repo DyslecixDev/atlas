@@ -33,7 +33,7 @@ export function SiteSidebar() {
           </span>
         </div>
         <p className="mt-1.5 font-mono text-[10px] text-ink-soft uppercase tracking-[0.18em]">
-          Field Manual · v3
+          Field Manual · v0
         </p>
       </div>
 

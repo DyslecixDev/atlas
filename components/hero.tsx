@@ -34,9 +34,9 @@ function SampleEntry() {
 export function Hero() {
   return (
     <section className="relative overflow-hidden border border-ink bg-navy px-6 py-7 text-paper sm:px-9 sm:py-9">
-      <span className="pointer-events-none absolute inset-2.5 border border-paper/20" />
+      <span className="pointer-events-none absolute inset-2.5 border-3 border-paper" />
       <p className="font-mono text-[10px] text-post-blue uppercase tracking-[0.22em]">
-        Field Manual · v3 · Free to read
+        Field Manual · v0 · Free to read
       </p>
       <h1 className="mt-3 max-w-xl font-bold font-title text-5xl leading-[0.95] sm:text-6xl">
         an opinionated map

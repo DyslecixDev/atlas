@@ -14,7 +14,7 @@ const perks = [
 
 export function ProgressAside() {
   return (
-    <aside className="flex flex-col gap-5">
+    <aside className="flex flex-col gap-5 self-start lg:sticky lg:top-18">
       <div className="lift border border-ink bg-post-yellow p-5 text-ink">
         <p className="font-mono text-[10px] text-ink/60 uppercase tracking-[0.18em]">
           Optional · Free
