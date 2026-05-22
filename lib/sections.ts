@@ -1,3 +1,22 @@
+/** Top-edge accent color on a chapter card. */
+export type ChapterAccent = "blue" | "gold" | "pink" | "red";
+
+export type Chapter = {
+  /** Section number like "1.1", shown after the "§". */
+  number: string;
+  title: string;
+  /** One-line card description. */
+  blurb: string;
+  /** How essential the chapter is, 1 to 5 stars. */
+  rating: number;
+  /** Top-edge accent color. Defaults to gold when omitted. */
+  accent?: ChapterAccent;
+  /** The chapter the reader is on now: gets the filled "open" button. */
+  current?: boolean;
+  /** Optional margin note rendered as a post-it beside the card. */
+  note?: string;
+};
+
 export type Entry = {
   /** Zero-padded ordinal for parts ("01"), letter for appendices ("A"). */
   id: string;
@@ -6,6 +25,10 @@ export type Entry = {
   chapters: number;
   /** First chapter names, for the truncated preview line. */
   topics: string[];
+  /** Lede shown under the title on the entry's own page. */
+  summary?: string;
+  /** Full chapter cards, when this entry's content has been authored. */
+  chapterList?: Chapter[];
 };
 
 export const parts: Entry[] = [
@@ -20,6 +43,97 @@ export const parts: Entry[] = [
       "Git & GitHub",
       "How the web works",
       "JavaScript fundamentals",
+    ],
+    summary:
+      "12 chapters. The bedrock layer: a Unix shell, an editor, git, the language, the runtime, and the first end-to-end build. Every chapter is open without an account.",
+    chapterList: [
+      {
+        number: "1.1",
+        title: "How to use this guide",
+        blurb:
+          "the guide's conventions · the Pick pattern · ~5 min, no entries.",
+        rating: 5,
+        accent: "blue",
+        current: true,
+      },
+      {
+        number: "1.2",
+        title: "Dev environment & WSL2",
+        blurb: "WSL2 on Windows, Homebrew on macOS, VS Code as default.",
+        rating: 5,
+        accent: "pink",
+      },
+      {
+        number: "1.3",
+        title: "Command line basics",
+        blurb: "cd, ls, pipes, find, grep — the 90% you need.",
+        rating: 5,
+        accent: "gold",
+      },
+      {
+        number: "1.4",
+        title: "Git & GitHub",
+        blurb: "init, commit, branch, rebase · GitHub flow.",
+        rating: 5,
+        accent: "red",
+      },
+      {
+        number: "1.5",
+        title: "How the web works",
+        blurb: "request → response · DNS · ports · HTTP basics.",
+        rating: 5,
+        accent: "gold",
+      },
+      {
+        number: "1.6",
+        title: "JavaScript fundamentals",
+        blurb: "values, control flow, functions, closures, modules.",
+        rating: 5,
+        accent: "gold",
+        note: "signed-in users see a % cleared meter per card, plus a Foundations seal sticker.",
+      },
+      {
+        number: "1.7",
+        title: "TypeScript fundamentals",
+        blurb: "gradual types · tsconfig that won't fight you.",
+        rating: 5,
+        accent: "blue",
+      },
+      {
+        number: "1.8",
+        title: "Node.js runtime",
+        blurb: "one runtime, two ways to think about it.",
+        rating: 5,
+        accent: "gold",
+      },
+      {
+        number: "1.9",
+        title: "Package mgmt (pnpm)",
+        blurb: "pnpm as default · lockfiles, workspaces.",
+        rating: 4,
+        accent: "gold",
+      },
+      {
+        number: "1.10",
+        title: "Build tooling (Vite)",
+        blurb: "dev server + bundler, in one tool.",
+        rating: 5,
+        accent: "gold",
+      },
+      {
+        number: "1.11",
+        title: "Linters (Biome)",
+        blurb: "Biome · one config, lint + format.",
+        rating: 4,
+        accent: "blue",
+      },
+      {
+        number: "1.12",
+        title: "Section project · personal site",
+        blurb: "a one-page personal site · no styling.",
+        rating: 5,
+        accent: "gold",
+      },
     ],
   },
   {
@@ -304,4 +418,19 @@ export const totalEntries = 320;
 /** Chapter names joined for the preview line (CSS truncates the overflow). */
 export function chapterPreview(entry: Entry): string {
   return entry.topics.join(" · ");
+}
+
+/** Look up any entry (part or appendix) by its id. */
+export function getEntry(id: string): Entry | undefined {
+  return tableOfContents.find((entry) => entry.id === id);
+}
+
+/**
+ * Header label for an entry: "Part 1" for numbered parts, "Appendix A" for
+ * lettered appendices.
+ */
+export function entryLabel(entry: Entry): string {
+  return /^\d+$/.test(entry.id)
+    ? `Part ${Number(entry.id)}`
+    : `Appendix ${entry.id}`;
 }

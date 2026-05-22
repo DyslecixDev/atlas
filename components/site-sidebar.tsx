@@ -9,6 +9,7 @@ import {
   Star,
 } from "lucide-react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 
 import { Button } from "@/components/ui/button";
@@ -31,6 +32,7 @@ const tabs = [
 
 export function SiteSidebar() {
   const [collapsed, setCollapsed] = useState(false);
+  const pathname = usePathname();
 
   if (collapsed) {
     return (
@@ -113,24 +115,38 @@ export function SiteSidebar() {
       </div>
 
       <nav className="field-scroll -mt-1.5 flex min-h-0 flex-1 flex-col overflow-y-auto">
-        {parts.map((part) => (
-          <Link
-            key={part.id}
-            href={`/parts/${part.id}`}
-            className="group flex items-center gap-2.5 px-2 py-1.5 hover:bg-paper"
-          >
-            <span className="font-mono text-[10px] text-ink-soft">
-              {part.id}
-            </span>
-            <span className="flex-1 truncate text-[13px] text-ink">
-              {part.title}
-            </span>
-            <span className="font-mono text-[10px] text-ink-soft">
-              {part.chapters}
-            </span>
-            <ChevronRight className="size-3.5 text-ink-soft transition-transform duration-300 ease-out group-hover:translate-x-0.5" />
-          </Link>
-        ))}
+        {parts.map((part) => {
+          const active = pathname === `/parts/${part.id}`;
+          return (
+            <Link
+              key={part.id}
+              href={`/parts/${part.id}`}
+              aria-current={active ? "page" : undefined}
+              className={cn(
+                "group flex items-center gap-2.5 border-l-2 px-2 py-1.5 transition-colors duration-300 ease-out",
+                active
+                  ? "border-navy bg-post-blue/60"
+                  : "border-transparent hover:bg-paper",
+              )}
+            >
+              <span className="font-mono text-[10px] text-ink-soft">
+                {part.id}
+              </span>
+              <span
+                className={cn(
+                  "flex-1 truncate text-[13px] text-ink",
+                  active && "font-medium",
+                )}
+              >
+                {part.title}
+              </span>
+              <span className="font-mono text-[10px] text-ink-soft">
+                {part.chapters}
+              </span>
+              <ChevronRight className="size-3.5 text-ink-soft transition-transform duration-300 ease-out group-hover:translate-x-0.5" />
+            </Link>
+          );
+        })}
       </nav>
 
       <div className="flex shrink-0 items-center gap-2 border border-ink/40 border-dashed px-2.5 py-2">
