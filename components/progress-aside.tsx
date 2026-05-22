@@ -1,4 +1,5 @@
 import { ArrowRight, Check } from "lucide-react";
+
 import { Squiggle } from "@/components/squiggle";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";

@@ -1,4 +1,5 @@
 import { ArrowRight, Star } from "lucide-react";
+
 import { Button } from "@/components/ui/button";
 import { partsCount, totalEntries } from "@/lib/sections";
 

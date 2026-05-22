@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Caveat, JetBrains_Mono, Patrick_Hand } from "next/font/google";
+
 import "./globals.css";
 
 const patrickHand = Patrick_Hand({
