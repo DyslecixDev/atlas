@@ -8,6 +8,10 @@ updates:
     open-pull-requests-limit: 10
     commit-message:
       prefix: build
+    ignore:
+      # Keep @types/node aligned with the Node version we run. Skip major bumps.
+      - dependency-name: "@types/node"
+        update-types: ["version-update:semver-major"]
     groups:
       # Roll routine minor/patch bumps into a single PR to cut noise.
       minor-and-patch:
