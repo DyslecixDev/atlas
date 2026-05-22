@@ -9,7 +9,7 @@ export default function Home() {
   return (
     <div className="flex h-full min-h-0 flex-1 overflow-hidden border border-ink bg-paper">
       <SiteSidebar />
-      <div className="flex min-h-0 min-w-0 flex-1 flex-col overflow-y-auto overflow-x-hidden">
+      <div className="field-scroll flex min-h-0 min-w-0 flex-1 flex-col overflow-y-auto overflow-x-hidden">
         <TopBar />
         <main className="flex flex-1 flex-col gap-6 px-5 py-6 sm:px-8 sm:py-8">
           <Hero />

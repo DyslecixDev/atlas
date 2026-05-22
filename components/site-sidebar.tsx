@@ -53,14 +53,14 @@ export function SiteSidebar() {
         <span className="washi washi-blue absolute -top-2 left-1 h-4 w-16 -rotate-6" />
         <div className="flex items-start justify-between gap-2">
           <div>
-            <div className="flex items-baseline gap-2">
+            <Link href="/" className="flex items-baseline gap-2">
               <span className="font-bold font-title text-3xl text-ink leading-none">
                 Atlas
               </span>
               <span className="font-mono text-[10px] text-ink-soft uppercase tracking-wide">
                 public docs
               </span>
-            </div>
+            </Link>
             <p className="mt-1.5 font-mono text-[10px] text-ink-soft uppercase tracking-[0.18em]">
               Field Manual · v0
             </p>
@@ -112,7 +112,7 @@ export function SiteSidebar() {
         </span>
       </div>
 
-      <nav className="-mt-1.5 flex min-h-0 flex-1 flex-col overflow-y-auto">
+      <nav className="field-scroll -mt-1.5 flex min-h-0 flex-1 flex-col overflow-y-auto">
         {parts.map((part) => (
           <Link
             key={part.id}
