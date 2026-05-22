@@ -12,13 +12,13 @@ const patrickHand = Patrick_Hand({
 const caveat = Caveat({
   variable: "--font-caveat",
   subsets: ["latin"],
-  weight: ["400", "600", "700"],
+  weight: ["400", "700"],
 });
 
 const jetbrainsMono = JetBrains_Mono({
   variable: "--font-jetbrains",
   subsets: ["latin"],
-  weight: ["400", "600", "700"],
+  weight: "400",
 });
 
 export const metadata: Metadata = {
