@@ -20,5 +20,6 @@
   "prettier.enable": false,
   "markdownlint.config": {
     "MD013": false
-  }
+  },
+  "cSpell.words": ["washis"]
 }

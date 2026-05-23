@@ -2,15 +2,9 @@ import { ArrowRight, StickyNote } from "lucide-react";
 
 import { Stars } from "@/components/stars";
 import { Button } from "@/components/ui/button";
-import type { Chapter, ChapterAccent } from "@/lib/sections";
+import { accentColor } from "@/lib/daily-palette";
+import type { Chapter } from "@/lib/sections";
 import { cn } from "@/lib/utils";
-
-const accentBar: Record<ChapterAccent, string> = {
-  blue: "bg-pen-blue",
-  gold: "bg-gold",
-  pink: "bg-tape-pink",
-  red: "bg-pen-red",
-};
 
 /**
  * Sticky-note marker pinned to the card's corner. The full note is revealed on
@@ -45,8 +39,6 @@ export function ChapterCard({
   chapter: Chapter;
   current?: boolean;
 }) {
-  const accent = chapter.accent ?? "gold";
-
   return (
     <article
       className={cn(
@@ -58,7 +50,9 @@ export function ChapterCard({
     >
       <span
         aria-hidden="true"
-        className={`absolute inset-x-0 top-0 h-1 ${accentBar[accent]}`}
+        className="absolute inset-x-0 top-0 h-1"
+        // Independently randomized per card (keyed by section number).
+        style={{ background: accentColor(chapter.number) }}
       />
       {current && (
         <span className="washi washi-pink absolute -top-2 right-4 h-4 w-16 rotate-3" />

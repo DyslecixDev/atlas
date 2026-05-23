@@ -1,6 +1,3 @@
-/** Top-edge accent color on a chapter card. */
-export type ChapterAccent = "blue" | "gold" | "pink" | "red";
-
 export type Chapter = {
   /** Section number like "1.1", shown after the "§". */
   number: string;
@@ -9,8 +6,6 @@ export type Chapter = {
   blurb: string;
   /** How essential the chapter is, 1 to 5 stars. */
   rating: number;
-  /** Top-edge accent color. Defaults to gold when omitted. */
-  accent?: ChapterAccent;
   /** Optional margin note rendered as a post-it beside the card. */
   note?: string;
 };
@@ -51,42 +46,36 @@ export const parts: Entry[] = [
         blurb:
           "the guide's conventions · the Pick pattern · ~5 min, no entries.",
         rating: 5,
-        accent: "blue",
       },
       {
         number: "1.2",
         title: "Dev environment & WSL2",
         blurb: "WSL2 on Windows, Homebrew on macOS, VS Code as default.",
         rating: 5,
-        accent: "pink",
       },
       {
         number: "1.3",
         title: "Command line basics",
         blurb: "cd, ls, pipes, find, grep — the 90% you need.",
         rating: 5,
-        accent: "gold",
       },
       {
         number: "1.4",
         title: "Git & GitHub",
         blurb: "init, commit, branch, rebase · GitHub flow.",
         rating: 5,
-        accent: "red",
       },
       {
         number: "1.5",
         title: "How the web works",
         blurb: "request → response · DNS · ports · HTTP basics.",
         rating: 5,
-        accent: "gold",
       },
       {
         number: "1.6",
         title: "JavaScript fundamentals",
         blurb: "values, control flow, functions, closures, modules.",
         rating: 5,
-        accent: "gold",
         note: "signed-in users see a % cleared meter per card, plus a Foundations seal sticker.",
       },
       {
@@ -94,42 +83,36 @@ export const parts: Entry[] = [
         title: "TypeScript fundamentals",
         blurb: "gradual types · tsconfig that won't fight you.",
         rating: 5,
-        accent: "blue",
       },
       {
         number: "1.8",
         title: "Node.js runtime",
         blurb: "one runtime, two ways to think about it.",
         rating: 5,
-        accent: "gold",
       },
       {
         number: "1.9",
         title: "Package mgmt (pnpm)",
         blurb: "pnpm as default · lockfiles, workspaces.",
         rating: 4,
-        accent: "gold",
       },
       {
         number: "1.10",
         title: "Build tooling (Vite)",
         blurb: "dev server + bundler, in one tool.",
         rating: 5,
-        accent: "gold",
       },
       {
         number: "1.11",
         title: "Linters (Biome)",
         blurb: "Biome · one config, lint + format.",
         rating: 4,
-        accent: "blue",
       },
       {
         number: "1.12",
         title: "Section project · personal site",
         blurb: "a one-page personal site · no styling.",
         rating: 5,
-        accent: "gold",
       },
     ],
   },
