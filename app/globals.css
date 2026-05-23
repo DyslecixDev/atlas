@@ -34,6 +34,16 @@
   --tape-pink: oklch(73% 0.08 0);
   --tape-kraft: oklch(67% 0.07 75);
 
+  /*
+   * Washi tape color slots, reassigned once a day in the root layout so every
+   * tape reshuffles each 24h. Defaults are the identity mapping, so without the
+   * daily override the design looks exactly as authored. (Card accent bars are
+   * randomized independently per card in accentColor(), not via these slots.)
+   */
+  --washi-0: var(--tape-blue);
+  --washi-1: var(--tape-pink);
+  --washi-2: var(--tape-kraft);
+
   /* shadcn semantic tokens mapped onto the palette */
   --background: var(--paper);
   --foreground: var(--ink);
@@ -142,14 +152,19 @@
       transparent 9px
     );
   }
+  /*
+   * The three washi color modifiers map onto the daily-rotated slots rather
+   * than fixed colors, so every tape on the site reshuffles each day. The class
+   * names are the identity-day color: washi-blue is slot 0 (defaults to blue).
+   */
   .washi-blue {
-    background-color: color-mix(in srgb, var(--tape-blue) 82%, transparent);
-  }
-  .washi-kraft {
-    background-color: color-mix(in srgb, var(--tape-kraft) 82%, transparent);
+    background-color: color-mix(in srgb, var(--washi-0) 82%, transparent);
   }
   .washi-pink {
-    background-color: color-mix(in srgb, var(--tape-pink) 82%, transparent);
+    background-color: color-mix(in srgb, var(--washi-1) 82%, transparent);
+  }
+  .washi-kraft {
+    background-color: color-mix(in srgb, var(--washi-2) 82%, transparent);
   }
 
   /* Lifted paper / sticker shadow */
