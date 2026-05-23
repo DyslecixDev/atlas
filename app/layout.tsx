@@ -1,7 +1,12 @@
 import type { Metadata } from "next";
 import { Caveat, JetBrains_Mono, Patrick_Hand } from "next/font/google";
 
+import { dailyPaletteStyle } from "@/lib/daily-palette";
+
 import "./globals.css";
+
+// Regenerate daily so the decorative palette in dailyPaletteStyle() reshuffles.
+export const revalidate = 86400;
 
 const patrickHand = Patrick_Hand({
   variable: "--font-patrick",
@@ -39,6 +44,7 @@ export default function RootLayout({
     >
       <body
         className="flex h-dvh flex-col overflow-hidden p-1.5"
+        style={dailyPaletteStyle()}
         suppressHydrationWarning
       >
         {children}
