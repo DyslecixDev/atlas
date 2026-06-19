@@ -18,7 +18,7 @@ jobs:
   verify:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
 
       # Install pnpm as a standalone binary that bundles its own Node, so the
       # runner default Node (older than pnpm 11 needs) cannot fail the install.
